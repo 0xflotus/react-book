@@ -1,6 +1,6 @@
 # Event-Handling
 
-Ein wesentlicher Teil bei der Entwicklung von Anwendungen mit einem komplexen User Interfaces ist natürlich die Interaktion zwischen Benutzer und dem Interface an sich. Insbesondere in Form von **Events**. 
+Ein wesentlicher Teil bei der Entwicklung von Anwendungen mit einem komplexen User Interface ist natürlich die Interaktion zwischen Benutzer und dem Interface an sich. Insbesondere in Form von **Events**. 
 
 Ich drücke einen Knopf und es passiert etwas. Ich schreibe einen Text in ein Feld und es passiert etwas. Ich wähle ein Element aus einer Liste und es passiert etwas. In einfachem JavaScript stellt uns der Browser dafür die Methoden `addEventListener()` und `removeEventListener()` bereit. Auf diese beiden Event-Methoden kann in React in den meisten Fällen nahezu komplett verzichtet werden, da React ein eigenes System zum Definieren von Benutzerinteraktion gleich mitbringt. Und zwar, nicht erschrecken: über **Inline-Events**. 
 
@@ -66,7 +66,8 @@ class Counter extends React.Component {
 Hier definieren wir also einen `onClick`-Event um den Zähler jeweils um `1` zu erhöhen, sobald der Benutzer auf den Button `+1` klickt. Beim Klick auf den Button sieht unser Benutzer aber stattdessen:
 
 {% hint style="danger" %}
-**TypeError**  
+**TypeError**
+  
 Cannot read property 'setState' of undefined
 {% endhint %}
 
@@ -180,7 +181,8 @@ Wir registrieren einen `onChange`-Event, der bei einer Änderung im Textfeld den
 Hier haben wir aber nun mit einem Fallstrick zu tun: der `this.setState()`-Aufruf nutzt eine **Updater-Funktion**, also einen Callback. Dieser findet außerhalb des eigentlichen Event-Handler Scopes statt. Das bedeutet der `SyntheticEvent` wurde zu diesem Zeitpunkt bereits wieder zurückgesetzt und `e.target` existiert zum Zeitpunkt des Aufrufs der Updater-Funktion schon gar nicht mehr:
 
 {% hint style="danger" %}
-**TypeError**  
+**TypeError**
+  
 Cannot read property 'value' of null
 {% endhint %}
 
